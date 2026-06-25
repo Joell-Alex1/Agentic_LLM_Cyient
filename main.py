@@ -1,45 +1,21 @@
-import asyncio
+from graph import app
 
-from client import get_schema, run_query
-from LLM import can_answer, generate_sql, generate_answer
-
-query = input("Enter your query: ")
-
-schema = asyncio.run(
-    get_schema()
-)
-if not can_answer(query, schema):
-    print(
-        "I'm unable to answer that question using the available information."
-    )
-    exit()
-
-sql = generate_sql(
-    query,
-    schema
+query = input(
+    "Enter your query: "
 )
 
+result = app.invoke(
+    {
+        "question": query
+    }
+)
+
+# debugging
 print("\nGenerated SQL:")
-print(sql)
-
-
-if sql == "CANNOT_ANSWER":
-    print(
-        "I'm unable to answer that question using the available information."
-    )
-    exit()
-
-rows = asyncio.run(
-    run_query(sql)
-)
+print(result.get("sql"))
 
 print("\nRows:")
-print(rows)
-
-answer = generate_answer(
-    query,
-    str(rows)
-)
+print(result.get("rows"))
 
 print("\nAnswer:")
-print(answer)
+print(result.get("answer"))

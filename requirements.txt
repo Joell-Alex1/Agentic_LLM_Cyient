@@ -3,4 +3,4 @@ python-dotenv
 langchain-openai
 pydantic
 langchain
-docling
+grandalf
