@@ -117,9 +117,9 @@ Install:
 # Clone Repository
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/Joell-Alex1/Agentic_LLM_Cyient
 
-cd <repository_name>
+cd Agentic_LLM_Cyient
 ```
 
 ---
